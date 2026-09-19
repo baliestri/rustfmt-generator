@@ -8,120 +8,112 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Palette: machined steel surfaces with a patina accent (the green that forms
+ * on oxidized copper). Oxide red is reserved for removed lines in diffs.
+ */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --background: #eef1ec;
-  --foreground: #16242b;
-  --card: #e6eae1;
-  --card-foreground: #16242b;
-  --popover: #e6eae1;
-  --popover-foreground: #16242b;
-  --primary: #a8481f;
+  --background: #eceeed;
+  --foreground: #1a1f23;
+  --card: #f6f7f6;
+  --card-foreground: #1a1f23;
+  --popover: #f9faf9;
+  --popover-foreground: #1a1f23;
+  --primary: #17695f;
   --primary-foreground: #ffffff;
-  --secondary: #d8e0d6;
-  --secondary-foreground: #16242b;
-  --muted: #e2e6de;
-  --muted-foreground: #5b6b60;
-  --accent: #d9e7e6;
-  --accent-foreground: #16242b;
-  --destructive: #b3261e;
-  --input: #c8d0c3;
-  --border: #c8d0c3;
-  --ring: #a8481f;
-  --radius: 0.25rem;
+  --secondary: #dfe3e1;
+  --secondary-foreground: #1a1f23;
+  --muted: #e2e5e3;
+  --muted-foreground: #5a6368;
+  --accent: #dae6e2;
+  --accent-foreground: #12302b;
+  --destructive: #a33b24;
+  --input: #c9cfcc;
+  --border: #d2d7d4;
+  --ring: #17695f;
+  --radius: 0.375rem;
 
-  --clay: #c1572e;
-  --survey: #3e6e71;
-  --grade-gold: #b08a2e;
-  --paper-line: #c8d0c3;
-  /* diverging pair for signed data (SHAP), validated against both surfaces via dataviz skill */
-  --chart-positive: #0d9488;
-
-  --sidebar: #16242b;
-  --sidebar-foreground: #eef1ec;
-  --sidebar-primary: #d97847;
-  --sidebar-primary-foreground: #12283d;
-  --sidebar-accent: #22323b;
-  --sidebar-accent-foreground: #eef1ec;
-  --sidebar-border: rgba(238, 241, 236, 0.12);
-  --sidebar-ring: #d97847;
+  --code: #f9faf9;
+  --ruler: #8b9490;
+  --guide: #b4542f;
+  --nightly: #5b4a8b;
+  --nightly-soft: #e6e2f0;
+  --diff-add: rgba(23, 105, 95, 0.13);
+  --diff-add-mark: #17695f;
+  --diff-del: rgba(163, 59, 36, 0.11);
+  --diff-del-mark: #a33b24;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --background: #12283d;
-    --foreground: #e7eef0;
-    --card: #16314a;
-    --card-foreground: #e7eef0;
-    --popover: #16314a;
-    --popover-foreground: #e7eef0;
-    --primary: #d97847;
-    --primary-foreground: #12283d;
-    --secondary: #1d3c55;
-    --secondary-foreground: #e7eef0;
-    --muted: #1d3c55;
-    --muted-foreground: #8fb0b3;
-    --accent: #1f4658;
-    --accent-foreground: #e7eef0;
-    --destructive: #e5564a;
-    --input: rgba(231, 238, 240, 0.16);
-    --border: rgba(231, 238, 240, 0.16);
-    --ring: #d97847;
+    color-scheme: dark;
+    --background: #15181b;
+    --foreground: #e2e6e4;
+    --card: #1b1f22;
+    --card-foreground: #e2e6e4;
+    --popover: #20252a;
+    --popover-foreground: #e2e6e4;
+    --primary: #5fb9a9;
+    --primary-foreground: #0c1a17;
+    --secondary: #262c30;
+    --secondary-foreground: #e2e6e4;
+    --muted: #22272b;
+    --muted-foreground: #939c99;
+    --accent: #1f302d;
+    --accent-foreground: #d4ebe6;
+    --destructive: #e3876f;
+    --input: rgba(226, 230, 228, 0.16);
+    --border: rgba(226, 230, 228, 0.11);
+    --ring: #5fb9a9;
 
-    --clay: #d97847;
-    --survey: #6fa6a0;
-    --grade-gold: #d4ae55;
-    --paper-line: rgba(231, 238, 240, 0.16);
-
-    --sidebar: #0d1e2f;
-    --sidebar-foreground: #e7eef0;
-    --sidebar-primary: #d97847;
-    --sidebar-primary-foreground: #12283d;
-    --sidebar-accent: #16314a;
-    --sidebar-accent-foreground: #e7eef0;
-    --sidebar-border: rgba(231, 238, 240, 0.12);
-    --sidebar-ring: #d97847;
+    --code: #111416;
+    --ruler: #5f6966;
+    --guide: #d9794f;
+    --nightly: #b9a8e6;
+    --nightly-soft: #2a2540;
+    --diff-add: rgba(95, 185, 169, 0.14);
+    --diff-add-mark: #6fcab9;
+    --diff-del: rgba(227, 135, 111, 0.13);
+    --diff-del-mark: #e3876f;
   }
 }
 
-.dark {
-  --background: #12283d;
-  --foreground: #e7eef0;
-  --card: #16314a;
-  --card-foreground: #e7eef0;
-  --popover: #16314a;
-  --popover-foreground: #e7eef0;
-  --primary: #d97847;
-  --primary-foreground: #12283d;
-  --secondary: #1d3c55;
-  --secondary-foreground: #e7eef0;
-  --muted: #1d3c55;
-  --muted-foreground: #8fb0b3;
-  --accent: #1f4658;
-  --accent-foreground: #e7eef0;
-  --destructive: #e5564a;
-  --input: rgba(231, 238, 240, 0.16);
-  --border: rgba(231, 238, 240, 0.16);
-  --ring: #d97847;
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --background: #15181b;
+  --foreground: #e2e6e4;
+  --card: #1b1f22;
+  --card-foreground: #e2e6e4;
+  --popover: #20252a;
+  --popover-foreground: #e2e6e4;
+  --primary: #5fb9a9;
+  --primary-foreground: #0c1a17;
+  --secondary: #262c30;
+  --secondary-foreground: #e2e6e4;
+  --muted: #22272b;
+  --muted-foreground: #939c99;
+  --accent: #1f302d;
+  --accent-foreground: #d4ebe6;
+  --destructive: #e3876f;
+  --input: rgba(226, 230, 228, 0.16);
+  --border: rgba(226, 230, 228, 0.11);
+  --ring: #5fb9a9;
 
-  --clay: #d97847;
-  --survey: #6fa6a0;
-  --grade-gold: #d4ae55;
-  --paper-line: rgba(231, 238, 240, 0.16);
-
-  --sidebar: #0d1e2f;
-  --sidebar-foreground: #e7eef0;
-  --sidebar-primary: #d97847;
-  --sidebar-primary-foreground: #12283d;
-  --sidebar-accent: #16314a;
-  --sidebar-accent-foreground: #e7eef0;
-  --sidebar-border: rgba(231, 238, 240, 0.12);
-  --sidebar-ring: #d97847;
+  --code: #111416;
+  --ruler: #5f6966;
+  --guide: #d9794f;
+  --nightly: #b9a8e6;
+  --nightly-soft: #2a2540;
+  --diff-add: rgba(95, 185, 169, 0.14);
+  --diff-add-mark: #6fcab9;
+  --diff-del: rgba(227, 135, 111, 0.13);
+  --diff-del-mark: #e3876f;
 }
 
 @theme inline {
@@ -146,19 +138,15 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-ring: var(--ring);
-  --color-clay: var(--clay);
-  --color-survey: var(--survey);
-  --color-grade-gold: var(--grade-gold);
-  --color-paper-line: var(--paper-line);
-  --color-chart-positive: var(--chart-positive);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-code: var(--code);
+  --color-ruler: var(--ruler);
+  --color-guide: var(--guide);
+  --color-nightly: var(--nightly);
+  --color-nightly-soft: var(--nightly-soft);
+  --color-diff-add: var(--diff-add);
+  --color-diff-add-mark: var(--diff-add-mark);
+  --color-diff-del: var(--diff-del);
+  --color-diff-del-mark: var(--diff-del-mark);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -181,5 +169,19 @@ body {
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* Shiki emits both theme colors per token; pick the one for the active theme. */
+.dark .shiki-token {
+  color: var(--shiki-dark) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

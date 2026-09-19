@@ -1,0 +1,632 @@
+{
+  "stableVersion": "rustfmt 1.9.0-stable (48a229ceae 2026-09-01)",
+  "nightlyVersion": "rustfmt 1.10.0-nightly (0fc141305d 2026-09-11)",
+  "options": {
+    "max_width": {
+      "toolchain": "stable",
+      "input": "fn process_order(order: &Order, inventory: &mut Inventory, notifier: &dyn Notifier) -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(order, inventory.reserve(order.items())?, notifier.channel());\n    Ok(receipt)\n}\n",
+      "outputs": {
+        "60": "fn process_order(\n    order: &Order,\n    inventory: &mut Inventory,\n    notifier: &dyn Notifier,\n) -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(\n        order,\n        inventory.reserve(order.items())?,\n        notifier.channel(),\n    );\n    Ok(receipt)\n}\n",
+        "80": "fn process_order(\n    order: &Order,\n    inventory: &mut Inventory,\n    notifier: &dyn Notifier,\n) -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(\n        order,\n        inventory.reserve(order.items())?,\n        notifier.channel(),\n    );\n    Ok(receipt)\n}\n",
+        "100": "fn process_order(\n    order: &Order,\n    inventory: &mut Inventory,\n    notifier: &dyn Notifier,\n) -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(order, inventory.reserve(order.items())?, notifier.channel());\n    Ok(receipt)\n}\n",
+        "120": "fn process_order(order: &Order, inventory: &mut Inventory, notifier: &dyn Notifier) -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(order, inventory.reserve(order.items())?, notifier.channel());\n    Ok(receipt)\n}\n"
+      }
+    },
+    "use_small_heuristics": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let point = Point { x: 1, y: 2, z: 3 };\n    let names = vec![\"alice_example\", \"bob_example\", \"carol_example\", \"dave_example\"];\n    let total = orders.iter().filter(|o| o.paid).map(|o| o.amount).sum::<u64>();\n    let label = if count == 1 { \"item\" } else { \"items\" };\n    send_message(recipient_address, message_body, retry_count, timeout);\n}\n",
+      "outputs": {
+        "\"Default\"": "fn main() {\n    let point = Point { x: 1, y: 2, z: 3 };\n    let names = vec![\n        \"alice_example\",\n        \"bob_example\",\n        \"carol_example\",\n        \"dave_example\",\n    ];\n    let total = orders\n        .iter()\n        .filter(|o| o.paid)\n        .map(|o| o.amount)\n        .sum::<u64>();\n    let label = if count == 1 { \"item\" } else { \"items\" };\n    send_message(recipient_address, message_body, retry_count, timeout);\n}\n",
+        "\"Off\"": "fn main() {\n    let point = Point {\n        x: 1,\n        y: 2,\n        z: 3,\n    };\n    let names = vec![\"alice_example\", \"bob_example\", \"carol_example\", \"dave_example\"];\n    let total = orders.iter().filter(|o| o.paid).map(|o| o.amount).sum::<u64>();\n    let label = if count == 1 {\n        \"item\"\n    } else {\n        \"items\"\n    };\n    send_message(recipient_address, message_body, retry_count, timeout);\n}\n",
+        "\"Max\"": "fn main() {\n    let point = Point { x: 1, y: 2, z: 3 };\n    let names = vec![\"alice_example\", \"bob_example\", \"carol_example\", \"dave_example\"];\n    let total = orders.iter().filter(|o| o.paid).map(|o| o.amount).sum::<u64>();\n    let label = if count == 1 { \"item\" } else { \"items\" };\n    send_message(recipient_address, message_body, retry_count, timeout);\n}\n"
+      }
+    },
+    "fn_call_width": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    send_message(recipient_address, message_body, retry_count);\n    log(level, text);\n}\n",
+      "outputs": {
+        "20": "fn main() {\n    send_message(\n        recipient_address,\n        message_body,\n        retry_count,\n    );\n    log(level, text);\n}\n",
+        "40": "fn main() {\n    send_message(\n        recipient_address,\n        message_body,\n        retry_count,\n    );\n    log(level, text);\n}\n",
+        "60": "fn main() {\n    send_message(recipient_address, message_body, retry_count);\n    log(level, text);\n}\n",
+        "80": "fn main() {\n    send_message(recipient_address, message_body, retry_count);\n    log(level, text);\n}\n"
+      }
+    },
+    "attr_fn_like_width": {
+      "toolchain": "stable",
+      "input": "#[cfg(all(target_os = \"linux\", feature = \"io_uring\", not(test)))]\nfn setup() {}\n",
+      "outputs": {
+        "30": "#[cfg(all(\n    target_os = \"linux\",\n    feature = \"io_uring\",\n    not(test)\n))]\nfn setup() {}\n",
+        "50": "#[cfg(all(\n    target_os = \"linux\",\n    feature = \"io_uring\",\n    not(test)\n))]\nfn setup() {}\n",
+        "70": "#[cfg(all(target_os = \"linux\", feature = \"io_uring\", not(test)))]\nfn setup() {}\n",
+        "90": "#[cfg(all(target_os = \"linux\", feature = \"io_uring\", not(test)))]\nfn setup() {}\n"
+      }
+    },
+    "struct_lit_width": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let p = Point { x: 1, y: 2 };\n    let c = Color { red: 255, green: 128, blue: 0 };\n}\n",
+      "outputs": {
+        "0": "fn main() {\n    let p = Point {\n        x: 1,\n        y: 2,\n    };\n    let c = Color {\n        red: 255,\n        green: 128,\n        blue: 0,\n    };\n}\n",
+        "18": "fn main() {\n    let p = Point { x: 1, y: 2 };\n    let c = Color {\n        red: 255,\n        green: 128,\n        blue: 0,\n    };\n}\n",
+        "30": "fn main() {\n    let p = Point { x: 1, y: 2 };\n    let c = Color { red: 255, green: 128, blue: 0 };\n}\n",
+        "50": "fn main() {\n    let p = Point { x: 1, y: 2 };\n    let c = Color { red: 255, green: 128, blue: 0 };\n}\n"
+      }
+    },
+    "struct_variant_width": {
+      "toolchain": "stable",
+      "input": "enum Shape {\n    Circle { radius: f64 },\n    Rect { width: f64, height: f64 },\n    Triangle { a: f64, b: f64, c: f64 },\n}\n",
+      "outputs": {
+        "0": "enum Shape {\n    Circle {\n        radius: f64,\n    },\n    Rect {\n        width: f64,\n        height: f64,\n    },\n    Triangle {\n        a: f64,\n        b: f64,\n        c: f64,\n    },\n}\n",
+        "20": "enum Shape {\n    Circle {\n        radius: f64,\n    },\n    Rect {\n        width: f64,\n        height: f64,\n    },\n    Triangle {\n        a: f64,\n        b: f64,\n        c: f64,\n    },\n}\n",
+        "35": "enum Shape {\n    Circle { radius: f64 },\n    Rect { width: f64, height: f64 },\n    Triangle { a: f64, b: f64, c: f64 },\n}\n",
+        "50": "enum Shape {\n    Circle { radius: f64 },\n    Rect { width: f64, height: f64 },\n    Triangle { a: f64, b: f64, c: f64 },\n}\n"
+      }
+    },
+    "array_width": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let stages = [\"alpha_release\", \"beta_release\", \"release_candidate\", \"stable\"];\n}\n",
+      "outputs": {
+        "20": "fn main() {\n    let stages = [\n        \"alpha_release\",\n        \"beta_release\",\n        \"release_candidate\",\n        \"stable\",\n    ];\n}\n",
+        "40": "fn main() {\n    let stages = [\n        \"alpha_release\",\n        \"beta_release\",\n        \"release_candidate\",\n        \"stable\",\n    ];\n}\n",
+        "60": "fn main() {\n    let stages = [\n        \"alpha_release\",\n        \"beta_release\",\n        \"release_candidate\",\n        \"stable\",\n    ];\n}\n",
+        "80": "fn main() {\n    let stages = [\"alpha_release\", \"beta_release\", \"release_candidate\", \"stable\"];\n}\n"
+      }
+    },
+    "chain_width": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let total = orders.iter().filter(|o| o.paid).map(|o| o.amount).sum::<u64>();\n}\n",
+      "outputs": {
+        "20": "fn main() {\n    let total = orders\n        .iter()\n        .filter(|o| o.paid)\n        .map(|o| o.amount)\n        .sum::<u64>();\n}\n",
+        "40": "fn main() {\n    let total = orders\n        .iter()\n        .filter(|o| o.paid)\n        .map(|o| o.amount)\n        .sum::<u64>();\n}\n",
+        "60": "fn main() {\n    let total = orders\n        .iter()\n        .filter(|o| o.paid)\n        .map(|o| o.amount)\n        .sum::<u64>();\n}\n",
+        "80": "fn main() {\n    let total = orders.iter().filter(|o| o.paid).map(|o| o.amount).sum::<u64>();\n}\n"
+      }
+    },
+    "single_line_if_else_max_width": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let label = if count == 1 { \"item\" } else { \"items\" };\n}\n",
+      "outputs": {
+        "0": "fn main() {\n    let label = if count == 1 {\n        \"item\"\n    } else {\n        \"items\"\n    };\n}\n",
+        "30": "fn main() {\n    let label = if count == 1 {\n        \"item\"\n    } else {\n        \"items\"\n    };\n}\n",
+        "50": "fn main() {\n    let label = if count == 1 { \"item\" } else { \"items\" };\n}\n",
+        "80": "fn main() {\n    let label = if count == 1 { \"item\" } else { \"items\" };\n}\n"
+      }
+    },
+    "single_line_let_else_max_width": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let Some(user) = find_user(id) else { return };\n}\n",
+      "outputs": {
+        "0": "fn main() {\n    let Some(user) = find_user(id) else {\n        return;\n    };\n}\n",
+        "30": "fn main() {\n    let Some(user) = find_user(id) else {\n        return;\n    };\n}\n",
+        "50": "fn main() {\n    let Some(user) = find_user(id) else { return };\n}\n",
+        "80": "fn main() {\n    let Some(user) = find_user(id) else { return };\n}\n"
+      }
+    },
+    "short_array_element_width_threshold": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let table = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700];\n}\n",
+      "outputs": {
+        "0": "fn main() {\n    let table = [\n        100,\n        200,\n        300,\n        400,\n        500,\n        600,\n        700,\n        800,\n        900,\n        1000,\n        1100,\n        1200,\n        1300,\n        1400,\n        1500,\n        1600,\n        1700,\n    ];\n}\n",
+        "2": "fn main() {\n    let table = [\n        100,\n        200,\n        300,\n        400,\n        500,\n        600,\n        700,\n        800,\n        900,\n        1000,\n        1100,\n        1200,\n        1300,\n        1400,\n        1500,\n        1600,\n        1700,\n    ];\n}\n",
+        "10": "fn main() {\n    let table = [\n        100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700,\n    ];\n}\n",
+        "20": "fn main() {\n    let table = [\n        100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700,\n    ];\n}\n"
+      }
+    },
+    "hard_tabs": {
+      "toolchain": "stable",
+      "input": "mod server {\n    pub fn handle(request: Request) -> Response {\n        match request.method() {\n            Method::Get => {\n                if let Some(page) = cache.get(request.path()) {\n                    return page.clone();\n                }\n                render(request)\n            }\n            _ => Response::not_allowed(),\n        }\n    }\n}\n",
+      "outputs": {
+        "false": "mod server {\n    pub fn handle(request: Request) -> Response {\n        match request.method() {\n            Method::Get => {\n                if let Some(page) = cache.get(request.path()) {\n                    return page.clone();\n                }\n                render(request)\n            }\n            _ => Response::not_allowed(),\n        }\n    }\n}\n",
+        "true": "mod server {\n\tpub fn handle(request: Request) -> Response {\n\t\tmatch request.method() {\n\t\t\tMethod::Get => {\n\t\t\t\tif let Some(page) = cache.get(request.path()) {\n\t\t\t\t\treturn page.clone();\n\t\t\t\t}\n\t\t\t\trender(request)\n\t\t\t}\n\t\t\t_ => Response::not_allowed(),\n\t\t}\n\t}\n}\n"
+      }
+    },
+    "tab_spaces": {
+      "toolchain": "stable",
+      "input": "mod server {\n    pub fn handle(request: Request) -> Response {\n        match request.method() {\n            Method::Get => {\n                if let Some(page) = cache.get(request.path()) {\n                    return page.clone();\n                }\n                render(request)\n            }\n            _ => Response::not_allowed(),\n        }\n    }\n}\n",
+      "outputs": {
+        "2": "mod server {\n  pub fn handle(request: Request) -> Response {\n    match request.method() {\n      Method::Get => {\n        if let Some(page) = cache.get(request.path()) {\n          return page.clone();\n        }\n        render(request)\n      }\n      _ => Response::not_allowed(),\n    }\n  }\n}\n",
+        "3": "mod server {\n   pub fn handle(request: Request) -> Response {\n      match request.method() {\n         Method::Get => {\n            if let Some(page) = cache.get(request.path()) {\n               return page.clone();\n            }\n            render(request)\n         }\n         _ => Response::not_allowed(),\n      }\n   }\n}\n",
+        "4": "mod server {\n    pub fn handle(request: Request) -> Response {\n        match request.method() {\n            Method::Get => {\n                if let Some(page) = cache.get(request.path()) {\n                    return page.clone();\n                }\n                render(request)\n            }\n            _ => Response::not_allowed(),\n        }\n    }\n}\n",
+        "8": "mod server {\n        pub fn handle(request: Request) -> Response {\n                match request.method() {\n                        Method::Get => {\n                                if let Some(page) = cache.get(request.path()) {\n                                        return page.clone();\n                                }\n                                render(request)\n                        }\n                        _ => Response::not_allowed(),\n                }\n        }\n}\n"
+      }
+    },
+    "indent_style": {
+      "toolchain": "nightly",
+      "input": "fn process_order(order: &Order, inventory: &mut Inventory, notifier: &dyn Notifier) -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(order, inventory.reserve(order.items())?, notifier.channel());\n    Ok(receipt)\n}\n",
+      "outputs": {
+        "\"Block\"": "fn process_order(\n    order: &Order,\n    inventory: &mut Inventory,\n    notifier: &dyn Notifier,\n) -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(order, inventory.reserve(order.items())?, notifier.channel());\n    Ok(receipt)\n}\n",
+        "\"Visual\"": "fn process_order(order: &Order,\n                 inventory: &mut Inventory,\n                 notifier: &dyn Notifier)\n                 -> Result<Receipt, OrderError> {\n    let receipt = build_receipt(order, inventory.reserve(order.items())?, notifier.channel());\n    Ok(receipt)\n}\n"
+      }
+    },
+    "blank_lines_upper_bound": {
+      "toolchain": "nightly",
+      "input": "fn first() {}\n\n\n\nfn second() {\n    let a = 1;\n\n\n    let b = 2;\n}\n",
+      "outputs": {
+        "0": "fn first() {}\nfn second() {\n    let a = 1;\n    let b = 2;\n}\n",
+        "1": "fn first() {}\n\nfn second() {\n    let a = 1;\n\n    let b = 2;\n}\n",
+        "2": "fn first() {}\n\n\nfn second() {\n    let a = 1;\n\n\n    let b = 2;\n}\n",
+        "3": "fn first() {}\n\n\n\nfn second() {\n    let a = 1;\n\n\n    let b = 2;\n}\n"
+      }
+    },
+    "blank_lines_lower_bound": {
+      "toolchain": "nightly",
+      "input": "fn first() {}\nfn second() {\n    let a = 1;\n    let b = 2;\n}\n",
+      "context": {
+        "blank_lines_upper_bound": 2
+      },
+      "outputs": {
+        "0": "fn first() {}\nfn second() {\n    let a = 1;\n    let b = 2;\n}\n",
+        "1": "fn first() {}\n\nfn second() {\n\n    let a = 1;\n\n    let b = 2;\n}\n"
+      }
+    },
+    "type_punctuation_density": {
+      "toolchain": "nightly",
+      "input": "fn spawn<T: Send + Sync + 'static, E = Error>(task: T) {}\n",
+      "outputs": {
+        "\"Wide\"": "fn spawn<T: Send + Sync + 'static, E = Error>(task: T) {}\n",
+        "\"Compressed\"": "fn spawn<T: Send+Sync+'static, E=Error>(task: T) {}\n"
+      }
+    },
+    "space_before_colon": {
+      "toolchain": "nightly",
+      "input": "struct Point {\n    x: i32,\n}\n\nfn scale(p: Point, factor: i32) -> i32 {\n    let x: i32 = p.x * factor;\n    x\n}\n",
+      "outputs": {
+        "false": "struct Point {\n    x: i32,\n}\n\nfn scale(p: Point, factor: i32) -> i32 {\n    let x: i32 = p.x * factor;\n    x\n}\n",
+        "true": "struct Point {\n    x : i32,\n}\n\nfn scale(p : Point, factor : i32) -> i32 {\n    let x : i32 = p.x * factor;\n    x\n}\n"
+      }
+    },
+    "space_after_colon": {
+      "toolchain": "nightly",
+      "input": "struct Point {\n    x: i32,\n}\n\nfn scale(p: Point, factor: i32) -> i32 {\n    let x: i32 = p.x * factor;\n    x\n}\n",
+      "outputs": {
+        "false": "struct Point {\n    x:i32,\n}\n\nfn scale(p:Point, factor:i32) -> i32 {\n    let x:i32 = p.x * factor;\n    x\n}\n",
+        "true": "struct Point {\n    x: i32,\n}\n\nfn scale(p: Point, factor: i32) -> i32 {\n    let x: i32 = p.x * factor;\n    x\n}\n"
+      }
+    },
+    "spaces_around_ranges": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    for i in 0..10 {\n        let window = &data[i..=i + 2];\n    }\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    for i in 0..10 {\n        let window = &data[i..=i + 2];\n    }\n}\n",
+        "true": "fn main() {\n    for i in 0 .. 10 {\n        let window = &data[i ..= i + 2];\n    }\n}\n"
+      }
+    },
+    "wrap_comments": {
+      "toolchain": "nightly",
+      "input": "// This comment is deliberately long so that it runs well past the configured comment width and has to wrap.\nfn main() {}\n",
+      "outputs": {
+        "false": "// This comment is deliberately long so that it runs well past the configured comment width and has to wrap.\nfn main() {}\n",
+        "true": "// This comment is deliberately long so that it runs well past the configured\n// comment width and has to wrap.\nfn main() {}\n"
+      }
+    },
+    "comment_width": {
+      "toolchain": "nightly",
+      "input": "// This comment is deliberately long so that it runs well past the configured comment width and has to wrap.\nfn main() {}\n",
+      "context": {
+        "wrap_comments": true
+      },
+      "outputs": {
+        "40": "// This comment is deliberately long so\n// that it runs well past the configured\n// comment width and has to wrap.\nfn main() {}\n",
+        "60": "// This comment is deliberately long so that it runs well\n// past the configured comment width and has to wrap.\nfn main() {}\n",
+        "80": "// This comment is deliberately long so that it runs well past the configured\n// comment width and has to wrap.\nfn main() {}\n",
+        "100": "// This comment is deliberately long so that it runs well past the configured comment width and has\n// to wrap.\nfn main() {}\n"
+      }
+    },
+    "normalize_comments": {
+      "toolchain": "nightly",
+      "input": "/* Starts the server. */\nfn main() {\n    let port = 8080; /* default port */\n}\n",
+      "outputs": {
+        "false": "/* Starts the server. */\nfn main() {\n    let port = 8080; /* default port */\n}\n",
+        "true": "// Starts the server.\nfn main() {\n    let port = 8080; // default port\n}\n"
+      }
+    },
+    "normalize_doc_attributes": {
+      "toolchain": "nightly",
+      "input": "#[doc = \"Adds one to the number given.\"]\nfn add_one(x: i32) -> i32 {\n    x + 1\n}\n",
+      "outputs": {
+        "false": "#[doc = \"Adds one to the number given.\"]\nfn add_one(x: i32) -> i32 {\n    x + 1\n}\n",
+        "true": "///Adds one to the number given.\nfn add_one(x: i32) -> i32 {\n    x + 1\n}\n"
+      }
+    },
+    "format_code_in_doc_comments": {
+      "toolchain": "nightly",
+      "input": "/// Adds one to the number given.\n///\n/// ```\n/// let five=5;\n/// assert_eq!(6,add_one(five));\n/// ```\nfn add_one(x: i32) -> i32 {\n    x + 1\n}\n",
+      "outputs": {
+        "false": "/// Adds one to the number given.\n///\n/// ```\n/// let five=5;\n/// assert_eq!(6,add_one(five));\n/// ```\nfn add_one(x: i32) -> i32 {\n    x + 1\n}\n",
+        "true": "/// Adds one to the number given.\n///\n/// ```\n/// let five = 5;\n/// assert_eq!(6, add_one(five));\n/// ```\nfn add_one(x: i32) -> i32 {\n    x + 1\n}\n"
+      }
+    },
+    "doc_comment_code_block_width": {
+      "toolchain": "nightly",
+      "input": "/// ```\n/// let total_price = base_price + shipping_cost + import_duty + sales_tax_amount;\n/// ```\nfn total() {}\n",
+      "context": {
+        "format_code_in_doc_comments": true
+      },
+      "outputs": {
+        "40": "/// ```\n/// let total_price = base_price\n///     + shipping_cost\n///     + import_duty\n///     + sales_tax_amount;\n/// ```\nfn total() {}\n",
+        "60": "/// ```\n/// let total_price = base_price\n///     + shipping_cost\n///     + import_duty\n///     + sales_tax_amount;\n/// ```\nfn total() {}\n",
+        "80": "/// ```\n/// let total_price =\n///     base_price + shipping_cost + import_duty + sales_tax_amount;\n/// ```\nfn total() {}\n",
+        "100": "/// ```\n/// let total_price = base_price + shipping_cost + import_duty + sales_tax_amount;\n/// ```\nfn total() {}\n"
+      }
+    },
+    "doc_comment_code_block_small_heuristics": {
+      "toolchain": "nightly",
+      "input": "/// ```\n/// let label = if count == 1 { \"item\" } else { \"items\" };\n/// send_message(recipient_address, message_body, retry_count, timeout);\n/// ```\nfn example() {}\n",
+      "context": {
+        "format_code_in_doc_comments": true
+      },
+      "outputs": {
+        "\"Inherit\"": "/// ```\n/// let label = if count == 1 { \"item\" } else { \"items\" };\n/// send_message(recipient_address, message_body, retry_count, timeout);\n/// ```\nfn example() {}\n",
+        "\"Default\"": "/// ```\n/// let label = if count == 1 { \"item\" } else { \"items\" };\n/// send_message(recipient_address, message_body, retry_count, timeout);\n/// ```\nfn example() {}\n",
+        "\"Off\"": "/// ```\n/// let label = if count == 1 {\n///     \"item\"\n/// } else {\n///     \"items\"\n/// };\n/// send_message(recipient_address, message_body, retry_count, timeout);\n/// ```\nfn example() {}\n",
+        "\"Max\"": "/// ```\n/// let label = if count == 1 { \"item\" } else { \"items\" };\n/// send_message(recipient_address, message_body, retry_count, timeout);\n/// ```\nfn example() {}\n"
+      }
+    },
+    "reorder_imports": {
+      "toolchain": "stable",
+      "input": "use crate::models::User;\nuse std::collections::HashMap;\nuse serde::Deserialize;\n\nuse super::helpers;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\nuse anyhow::Result;\nuse crate::models::Order;\n",
+      "outputs": {
+        "false": "use crate::models::User;\nuse std::collections::HashMap;\nuse serde::Deserialize;\n\nuse super::helpers;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\nuse anyhow::Result;\nuse crate::models::Order;\n",
+        "true": "use crate::models::User;\nuse serde::Deserialize;\nuse std::collections::HashMap;\n\nuse super::helpers;\nuse crate::models::Order;\nuse anyhow::Result;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\n"
+      }
+    },
+    "reorder_modules": {
+      "toolchain": "stable",
+      "input": "mod routes;\nmod config;\nmod auth;\n",
+      "outputs": {
+        "false": "mod routes;\nmod config;\nmod auth;\n",
+        "true": "mod auth;\nmod config;\nmod routes;\n"
+      }
+    },
+    "imports_granularity": {
+      "toolchain": "nightly",
+      "input": "use crate::models::User;\nuse std::collections::HashMap;\nuse serde::Deserialize;\n\nuse super::helpers;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\nuse anyhow::Result;\nuse crate::models::Order;\n",
+      "outputs": {
+        "\"Preserve\"": "use crate::models::User;\nuse serde::Deserialize;\nuse std::collections::HashMap;\n\nuse super::helpers;\nuse crate::models::Order;\nuse anyhow::Result;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\n",
+        "\"Crate\"": "use crate::models::User;\nuse serde::Deserialize;\nuse std::collections::HashMap;\n\nuse super::helpers;\nuse crate::models::Order;\nuse anyhow::Result;\nuse std::{\n    collections::HashSet,\n    io::{self, Read},\n};\n",
+        "\"Module\"": "use crate::models::User;\nuse serde::Deserialize;\nuse std::collections::HashMap;\n\nuse super::helpers;\nuse crate::models::Order;\nuse anyhow::Result;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\n",
+        "\"Item\"": "use crate::models::User;\nuse serde::Deserialize;\nuse std::collections::HashMap;\n\nuse super::helpers;\nuse crate::models::Order;\nuse anyhow::Result;\nuse std::collections::HashSet;\nuse std::io::Read;\nuse std::io::{self};\n",
+        "\"One\"": "use {crate::models::User, serde::Deserialize, std::collections::HashMap};\n\nuse {\n    super::helpers,\n    crate::models::Order,\n    anyhow::Result,\n    std::{\n        collections::HashSet,\n        io::{self, Read},\n    },\n};\n"
+      }
+    },
+    "group_imports": {
+      "toolchain": "nightly",
+      "input": "use crate::models::User;\nuse std::collections::HashMap;\nuse serde::Deserialize;\n\nuse super::helpers;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\nuse anyhow::Result;\nuse crate::models::Order;\n",
+      "outputs": {
+        "\"Preserve\"": "use crate::models::User;\nuse serde::Deserialize;\nuse std::collections::HashMap;\n\nuse super::helpers;\nuse crate::models::Order;\nuse anyhow::Result;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\n",
+        "\"StdExternalCrate\"": "use std::collections::HashMap;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\n\nuse anyhow::Result;\nuse serde::Deserialize;\n\nuse super::helpers;\nuse crate::models::Order;\nuse crate::models::User;\n",
+        "\"One\"": "use super::helpers;\nuse crate::models::Order;\nuse crate::models::User;\nuse anyhow::Result;\nuse serde::Deserialize;\nuse std::collections::HashMap;\nuse std::collections::HashSet;\nuse std::io::{self, Read};\n"
+      }
+    },
+    "imports_layout": {
+      "toolchain": "nightly",
+      "input": "use crate::models::{Account, Address, Invoice, LineItem, Order, Payment, Product, Refund, Shipment};\n",
+      "outputs": {
+        "\"Mixed\"": "use crate::models::{\n    Account, Address, Invoice, LineItem, Order, Payment, Product, Refund, Shipment,\n};\n",
+        "\"Horizontal\"": "use crate::models::{\n    Account, Address, Invoice, LineItem, Order, Payment, Product, Refund, Shipment\n};\n",
+        "\"HorizontalVertical\"": "use crate::models::{\n    Account,\n    Address,\n    Invoice,\n    LineItem,\n    Order,\n    Payment,\n    Product,\n    Refund,\n    Shipment,\n};\n",
+        "\"Vertical\"": "use crate::models::{\n    Account,\n    Address,\n    Invoice,\n    LineItem,\n    Order,\n    Payment,\n    Product,\n    Refund,\n    Shipment,\n};\n"
+      }
+    },
+    "imports_indent": {
+      "toolchain": "nightly",
+      "input": "use crate::models::{Account, Address, Invoice, LineItem, Order, Payment, Product, Refund, Shipment};\n",
+      "outputs": {
+        "\"Block\"": "use crate::models::{\n    Account, Address, Invoice, LineItem, Order, Payment, Product, Refund, Shipment,\n};\n",
+        "\"Visual\"": "use crate::models::{Account, Address, Invoice, LineItem, Order, Payment, Product, Refund, Shipment};\n"
+      }
+    },
+    "brace_style": {
+      "toolchain": "nightly",
+      "input": "struct Config {\n    name: String,\n}\n\nimpl Config {\n    fn load<P>(path: P) -> Self\n    where\n        P: AsRef<Path>,\n    {\n        todo!()\n    }\n}\n",
+      "outputs": {
+        "\"SameLineWhere\"": "struct Config {\n    name: String,\n}\n\nimpl Config {\n    fn load<P>(path: P) -> Self\n    where\n        P: AsRef<Path>,\n    {\n        todo!()\n    }\n}\n",
+        "\"AlwaysNextLine\"": "struct Config\n{\n    name: String,\n}\n\nimpl Config\n{\n    fn load<P>(path: P) -> Self\n    where\n        P: AsRef<Path>,\n    {\n        todo!()\n    }\n}\n",
+        "\"PreferSameLine\"": "struct Config {\n    name: String,\n}\n\nimpl Config {\n    fn load<P>(path: P) -> Self\n    where\n        P: AsRef<Path>, {\n        todo!()\n    }\n}\n"
+      }
+    },
+    "control_brace_style": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    if ready {\n        start();\n    } else {\n        wait();\n    }\n    for job in queue {\n        run(job);\n    }\n}\n",
+      "outputs": {
+        "\"AlwaysSameLine\"": "fn main() {\n    if ready {\n        start();\n    } else {\n        wait();\n    }\n    for job in queue {\n        run(job);\n    }\n}\n",
+        "\"ClosingNextLine\"": "fn main() {\n    if ready {\n        start();\n    }\n    else {\n        wait();\n    }\n    for job in queue {\n        run(job);\n    }\n}\n",
+        "\"AlwaysNextLine\"": "fn main() {\n    if ready\n    {\n        start();\n    }\n    else\n    {\n        wait();\n    }\n    for job in queue\n    {\n        run(job);\n    }\n}\n"
+      }
+    },
+    "fn_params_layout": {
+      "toolchain": "stable",
+      "input": "fn add(a: i32, b: i32) -> i32 {}\n\nfn create_user(name: String, email: String, age: u32, country: Country, referrer: Option<UserId>, newsletter: bool) {}\n",
+      "outputs": {
+        "\"Tall\"": "fn add(a: i32, b: i32) -> i32 {}\n\nfn create_user(\n    name: String,\n    email: String,\n    age: u32,\n    country: Country,\n    referrer: Option<UserId>,\n    newsletter: bool,\n) {\n}\n",
+        "\"Compressed\"": "fn add(a: i32, b: i32) -> i32 {}\n\nfn create_user(\n    name: String, email: String, age: u32, country: Country, referrer: Option<UserId>,\n    newsletter: bool,\n) {\n}\n",
+        "\"Vertical\"": "fn add(\n    a: i32,\n    b: i32,\n) -> i32 {\n}\n\nfn create_user(\n    name: String,\n    email: String,\n    age: u32,\n    country: Country,\n    referrer: Option<UserId>,\n    newsletter: bool,\n) {\n}\n"
+      }
+    },
+    "fn_single_line": {
+      "toolchain": "nightly",
+      "input": "fn double(x: i32) -> i32 {\n    x * 2\n}\n",
+      "outputs": {
+        "false": "fn double(x: i32) -> i32 {\n    x * 2\n}\n",
+        "true": "fn double(x: i32) -> i32 { x * 2 }\n"
+      }
+    },
+    "where_single_line": {
+      "toolchain": "nightly",
+      "input": "fn describe<T>(value: T) -> String\nwhere\n    T: Display,\n{\n    value.to_string()\n}\n",
+      "outputs": {
+        "false": "fn describe<T>(value: T) -> String\nwhere\n    T: Display,\n{\n    value.to_string()\n}\n",
+        "true": "fn describe<T>(value: T) -> String\nwhere T: Display {\n    value.to_string()\n}\n"
+      }
+    },
+    "empty_item_single_line": {
+      "toolchain": "nightly",
+      "input": "fn noop() {}\n\nimpl Marker for Unit {}\n",
+      "outputs": {
+        "false": "fn noop() {\n}\n\nimpl Marker for Unit {\n}\n",
+        "true": "fn noop() {}\n\nimpl Marker for Unit {}\n"
+      }
+    },
+    "struct_lit_single_line": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let p = Point { x: 1, y: 2 };\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let p = Point {\n        x: 1,\n        y: 2,\n    };\n}\n",
+        "true": "fn main() {\n    let p = Point { x: 1, y: 2 };\n}\n"
+      }
+    },
+    "struct_field_align_threshold": {
+      "toolchain": "nightly",
+      "input": "struct Server {\n    id: u32,\n    hostname: String,\n    port: u16,\n    max_connections: usize,\n}\n",
+      "outputs": {
+        "0": "struct Server {\n    id: u32,\n    hostname: String,\n    port: u16,\n    max_connections: usize,\n}\n",
+        "10": "struct Server {\n    id: u32,\n    hostname: String,\n    port: u16,\n    max_connections: usize,\n}\n",
+        "20": "struct Server {\n    id:              u32,\n    hostname:        String,\n    port:            u16,\n    max_connections: usize,\n}\n"
+      }
+    },
+    "enum_discrim_align_threshold": {
+      "toolchain": "nightly",
+      "input": "enum Status {\n    Ok = 200,\n    NotFound = 404,\n    InternalServerError = 500,\n}\n",
+      "outputs": {
+        "0": "enum Status {\n    Ok = 200,\n    NotFound = 404,\n    InternalServerError = 500,\n}\n",
+        "10": "enum Status {\n    Ok       = 200,\n    NotFound = 404,\n    InternalServerError = 500,\n}\n",
+        "20": "enum Status {\n    Ok                  = 200,\n    NotFound            = 404,\n    InternalServerError = 500,\n}\n"
+      }
+    },
+    "reorder_impl_items": {
+      "toolchain": "nightly",
+      "input": "impl Iterator for Counter {\n    fn next(&mut self) -> Option<u32> {\n        None\n    }\n    type Item = u32;\n}\n",
+      "outputs": {
+        "false": "impl Iterator for Counter {\n    fn next(&mut self) -> Option<u32> {\n        None\n    }\n    type Item = u32;\n}\n",
+        "true": "impl Iterator for Counter {\n    type Item = u32;\n\n    fn next(&mut self) -> Option<u32> {\n        None\n    }\n}\n"
+      }
+    },
+    "force_multiline_blocks": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    result.and_then(|maybe_value| match maybe_value {\n        None => fallback(),\n        Some(value) => process(value),\n    });\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    result.and_then(|maybe_value| match maybe_value {\n        None => fallback(),\n        Some(value) => process(value),\n    });\n}\n",
+        "true": "fn main() {\n    result.and_then(|maybe_value| {\n        match maybe_value {\n            None => fallback(),\n            Some(value) => process(value),\n        }\n    });\n}\n"
+      }
+    },
+    "match_arm_blocks": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    match event {\n        Event::Click => handle_click_event_with_long_name(position, button, modifiers, timestamp_value),\n        _ => {}\n    }\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    match event {\n        Event::Click =>\n            handle_click_event_with_long_name(position, button, modifiers, timestamp_value),\n        _ => {}\n    }\n}\n",
+        "true": "fn main() {\n    match event {\n        Event::Click => {\n            handle_click_event_with_long_name(position, button, modifiers, timestamp_value)\n        }\n        _ => {}\n    }\n}\n"
+      }
+    },
+    "match_arm_leading_pipes": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    match key {\n        | Key::Up | Key::Down => scroll(),\n        Key::Enter => submit(),\n        _ => {}\n    }\n}\n",
+      "outputs": {
+        "\"Never\"": "fn main() {\n    match key {\n        Key::Up | Key::Down => scroll(),\n        Key::Enter => submit(),\n        _ => {}\n    }\n}\n",
+        "\"Always\"": "fn main() {\n    match key {\n        | Key::Up | Key::Down => scroll(),\n        | Key::Enter => submit(),\n        | _ => {}\n    }\n}\n",
+        "\"Preserve\"": "fn main() {\n    match key {\n        | Key::Up | Key::Down => scroll(),\n        Key::Enter => submit(),\n        _ => {}\n    }\n}\n"
+      }
+    },
+    "match_arm_indent": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    match key {\n        Key::Enter => submit(),\n        _ => {}\n    }\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    match key {\n    Key::Enter => submit(),\n    _ => {}\n    }\n}\n",
+        "true": "fn main() {\n    match key {\n        Key::Enter => submit(),\n        _ => {}\n    }\n}\n"
+      }
+    },
+    "match_block_trailing_comma": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    match result {\n        Ok(value) => {\n            save(value);\n        }\n        Err(err) => {\n            report(err);\n        }\n    }\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    match result {\n        Ok(value) => {\n            save(value);\n        }\n        Err(err) => {\n            report(err);\n        }\n    }\n}\n",
+        "true": "fn main() {\n    match result {\n        Ok(value) => {\n            save(value);\n        },\n        Err(err) => {\n            report(err);\n        },\n    }\n}\n"
+      }
+    },
+    "merge_derives": {
+      "toolchain": "stable",
+      "input": "#[derive(Debug)]\n#[derive(Clone, PartialEq)]\nstruct Token;\n",
+      "outputs": {
+        "false": "#[derive(Debug)]\n#[derive(Clone, PartialEq)]\nstruct Token;\n",
+        "true": "#[derive(Debug, Clone, PartialEq)]\nstruct Token;\n"
+      }
+    },
+    "inline_attribute_width": {
+      "toolchain": "nightly",
+      "input": "#[cfg(feature = \"alloc\")]\nuse alloc::vec::Vec;\n#[cfg(test)]\nmod tests;\n",
+      "outputs": {
+        "0": "#[cfg(feature = \"alloc\")]\nuse alloc::vec::Vec;\n#[cfg(test)]\nmod tests;\n",
+        "30": "#[cfg(feature = \"alloc\")]\nuse alloc::vec::Vec;\n#[cfg(test)] mod tests;\n",
+        "50": "#[cfg(feature = \"alloc\")] use alloc::vec::Vec;\n#[cfg(test)] mod tests;\n"
+      }
+    },
+    "force_explicit_abi": {
+      "toolchain": "stable",
+      "input": "extern {\n    fn strlen(s: *const c_char) -> usize;\n}\n",
+      "outputs": {
+        "false": "extern {\n    fn strlen(s: *const c_char) -> usize;\n}\n",
+        "true": "extern \"C\" {\n    fn strlen(s: *const c_char) -> usize;\n}\n"
+      }
+    },
+    "trailing_comma": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let config = Config { name: String::from(\"server\"), port: 8080, workers: 4, verbose: true };\n    let pair = (1, 2);\n}\n",
+      "outputs": {
+        "\"Vertical\"": "fn main() {\n    let config = Config {\n        name: String::from(\"server\"),\n        port: 8080,\n        workers: 4,\n        verbose: true,\n    };\n    let pair = (1, 2);\n}\n",
+        "\"Always\"": "fn main() {\n    let config = Config {\n        name: String::from(\"server\",),\n        port: 8080,\n        workers: 4,\n        verbose: true,\n    };\n    let pair = (1, 2,);\n}\n",
+        "\"Never\"": "fn main() {\n    let config = Config {\n        name: String::from(\"server\"),\n        port: 8080,\n        workers: 4,\n        verbose: true\n    };\n    let pair = (1, 2);\n}\n"
+      }
+    },
+    "trailing_semicolon": {
+      "toolchain": "nightly",
+      "input": "fn first() -> usize {\n    return 0\n}\n\nfn drain() {\n    loop {\n        break\n    }\n}\n",
+      "outputs": {
+        "false": "fn first() -> usize {\n    return 0\n}\n\nfn drain() {\n    loop {\n        break\n    }\n}\n",
+        "true": "fn first() -> usize {\n    return 0;\n}\n\nfn drain() {\n    loop {\n        break;\n    }\n}\n"
+      }
+    },
+    "binop_separator": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let ready = connection_established && handshake_completed && credentials_verified && !shutdown_requested;\n}\n",
+      "outputs": {
+        "\"Front\"": "fn main() {\n    let ready = connection_established\n        && handshake_completed\n        && credentials_verified\n        && !shutdown_requested;\n}\n",
+        "\"Back\"": "fn main() {\n    let ready = connection_established &&\n        handshake_completed &&\n        credentials_verified &&\n        !shutdown_requested;\n}\n"
+      }
+    },
+    "combine_control_expr": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let value = compute(if use_cache { cached_value(key) } else { fetch_value_from_remote_server(key, timeout) });\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let value = compute(\n        if use_cache {\n            cached_value(key)\n        } else {\n            fetch_value_from_remote_server(key, timeout)\n        },\n    );\n}\n",
+        "true": "fn main() {\n    let value = compute(if use_cache {\n        cached_value(key)\n    } else {\n        fetch_value_from_remote_server(key, timeout)\n    });\n}\n"
+      }
+    },
+    "overflow_delimited_expr": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let server = Server::new(config, vec![first_route_handler, second_route_handler, third_route_handler]);\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let server = Server::new(\n        config,\n        vec![\n            first_route_handler,\n            second_route_handler,\n            third_route_handler,\n        ],\n    );\n}\n",
+        "true": "fn main() {\n    let server = Server::new(config, vec![\n        first_route_handler,\n        second_route_handler,\n        third_route_handler,\n    ]);\n}\n"
+      }
+    },
+    "remove_nested_parens": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let total = ((price + tax));\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let total = ((price + tax));\n}\n",
+        "true": "fn main() {\n    let total = (price + tax);\n}\n"
+      }
+    },
+    "use_field_init_shorthand": {
+      "toolchain": "stable",
+      "input": "fn main() {\n    let point = Point { x: x, y: y, z: 0 };\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let point = Point { x: x, y: y, z: 0 };\n}\n",
+        "true": "fn main() {\n    let point = Point { x, y, z: 0 };\n}\n"
+      }
+    },
+    "use_try_shorthand": {
+      "toolchain": "stable",
+      "input": "fn read_config(path: &str) -> Result<String, io::Error> {\n    let text = try!(fs::read_to_string(path));\n    Ok(text)\n}\n",
+      "outputs": {
+        "false": "fn read_config(path: &str) -> Result<String, io::Error> {\n    let text = try!(fs::read_to_string(path));\n    Ok(text)\n}\n",
+        "true": "fn read_config(path: &str) -> Result<String, io::Error> {\n    let text = fs::read_to_string(path)?;\n    Ok(text)\n}\n"
+      }
+    },
+    "condense_wildcard_suffixes": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let (first, _, _, _) = tuple;\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let (first, _, _, _) = tuple;\n}\n",
+        "true": "fn main() {\n    let (first, ..) = tuple;\n}\n"
+      }
+    },
+    "format_macro_matchers": {
+      "toolchain": "nightly",
+      "input": "macro_rules! point {\n    ($x:expr , $y :expr) => {\n        Point { x: $x, y: $y }\n    };\n}\n",
+      "outputs": {
+        "false": "macro_rules! point {\n    ($x:expr , $y :expr) => {\n        Point { x: $x, y: $y }\n    };\n}\n",
+        "true": "macro_rules! point {\n    ($x:expr, $y:expr) => {\n        Point { x: $x, y: $y }\n    };\n}\n"
+      }
+    },
+    "format_macro_bodies": {
+      "toolchain": "nightly",
+      "input": "macro_rules! point {\n    ($x:expr, $y:expr) => {\n        Point{x:$x,y:$y}\n    };\n}\n",
+      "outputs": {
+        "false": "macro_rules! point {\n    ($x:expr, $y:expr) => {\n        Point{x:$x,y:$y}\n    };\n}\n",
+        "true": "macro_rules! point {\n    ($x:expr, $y:expr) => {\n        Point { x: $x, y: $y }\n    };\n}\n"
+      }
+    },
+    "skip_macro_invocations": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let v = vec![1,2,   3];\n    let q = query!(select,   from,users);\n}\n",
+      "outputs": {
+        "[]": "fn main() {\n    let v = vec![1, 2, 3];\n    let q = query!(select, from, users);\n}\n",
+        "[\"*\"]": "fn main() {\n    let v = vec![1,2,   3];\n    let q = query!(select,   from,users);\n}\n",
+        "[\"query\"]": "fn main() {\n    let v = vec![1, 2, 3];\n    let q = query!(select,   from,users);\n}\n"
+      }
+    },
+    "format_strings": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let message = \"This string literal is deliberately long so that it runs well past the maximum line width.\";\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let message = \"This string literal is deliberately long so that it runs well past the maximum line width.\";\n}\n",
+        "true": "fn main() {\n    let message = \"This string literal is deliberately long so that it runs well past the maximum \\\n                   line width.\";\n}\n"
+      }
+    },
+    "hex_literal_case": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let mask = 0xDeadBeef;\n    let flag = 0xff;\n}\n",
+      "outputs": {
+        "\"Preserve\"": "fn main() {\n    let mask = 0xDeadBeef;\n    let flag = 0xff;\n}\n",
+        "\"Upper\"": "fn main() {\n    let mask = 0xDEADBEEF;\n    let flag = 0xFF;\n}\n",
+        "\"Lower\"": "fn main() {\n    let mask = 0xdeadbeef;\n    let flag = 0xff;\n}\n"
+      }
+    },
+    "float_literal_trailing_zero": {
+      "toolchain": "nightly",
+      "input": "fn main() {\n    let a = 1.;\n    let b = 2.0;\n    let c = 3.0_f32;\n    let d = 4f64;\n}\n",
+      "outputs": {
+        "\"Preserve\"": "fn main() {\n    let a = 1.;\n    let b = 2.0;\n    let c = 3.0_f32;\n    let d = 4f64;\n}\n",
+        "\"Always\"": "fn main() {\n    let a = 1.0;\n    let b = 2.0;\n    let c = 3.0_f32;\n    let d = 4.0f64;\n}\n",
+        "\"IfNoPostfix\"": "fn main() {\n    let a = 1.0;\n    let b = 2.0;\n    let c = 3f32;\n    let d = 4f64;\n}\n",
+        "\"Never\"": "fn main() {\n    let a = 1.;\n    let b = 2.;\n    let c = 3f32;\n    let d = 4f64;\n}\n"
+      }
+    },
+    "edition": {
+      "toolchain": "stable",
+      "input": "use std::num::{NonZeroU64, NonZeroU16, NonZeroU8, NonZeroU32};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument).await_like_method_call().unwrap_or_default();\n    let is_valid = matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+      "outputs": {
+        "\"2015\"": "use std::num::{NonZeroU16, NonZeroU32, NonZeroU64, NonZeroU8};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"2018\"": "use std::num::{NonZeroU16, NonZeroU32, NonZeroU64, NonZeroU8};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"2021\"": "use std::num::{NonZeroU16, NonZeroU32, NonZeroU64, NonZeroU8};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"2024\"": "use std::num::{NonZeroU8, NonZeroU16, NonZeroU32, NonZeroU64};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n"
+      }
+    },
+    "style_edition": {
+      "toolchain": "nightly",
+      "input": "use std::num::{NonZeroU64, NonZeroU16, NonZeroU8, NonZeroU32};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument).await_like_method_call().unwrap_or_default();\n    let is_valid = matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+      "outputs": {
+        "\"2015\"": "use std::num::{NonZeroU16, NonZeroU32, NonZeroU64, NonZeroU8};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"2018\"": "use std::num::{NonZeroU16, NonZeroU32, NonZeroU64, NonZeroU8};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"2021\"": "use std::num::{NonZeroU16, NonZeroU32, NonZeroU64, NonZeroU8};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"2024\"": "use std::num::{NonZeroU8, NonZeroU16, NonZeroU32, NonZeroU64};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"2027\"": "use std::num::{NonZeroU8, NonZeroU16, NonZeroU32, NonZeroU64};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n"
+      }
+    },
+    "version": {
+      "toolchain": "nightly",
+      "input": "use std::num::{NonZeroU64, NonZeroU16, NonZeroU8, NonZeroU32};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument).await_like_method_call().unwrap_or_default();\n    let is_valid = matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+      "outputs": {
+        "\"One\"": "use std::num::{NonZeroU16, NonZeroU32, NonZeroU64, NonZeroU8};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n",
+        "\"Two\"": "use std::num::{NonZeroU8, NonZeroU16, NonZeroU32, NonZeroU64};\n\nfn main() {\n    let value = some_function_with_a_long_name(first_argument)\n        .await_like_method_call()\n        .unwrap_or_default();\n    let is_valid =\n        matches!(state, State::Ready | State::Running if value > threshold_value_for_state);\n}\n"
+      }
+    },
+    "disable_all_formatting": {
+      "toolchain": "stable",
+      "input": "fn   main(){\nlet   x=1;let y =   2;\n    println!(\"{}\",x+y);\n}\n",
+      "outputs": {
+        "false": "fn main() {\n    let x = 1;\n    let y = 2;\n    println!(\"{}\", x + y);\n}\n",
+        "true": "fn   main(){\nlet   x=1;let y =   2;\n    println!(\"{}\",x+y);\n}\n"
+      }
+    }
+  }
+}

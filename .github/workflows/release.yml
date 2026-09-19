@@ -1,0 +1,93 @@
+name: Release
+
+# Creates release/vX.Y.Z+rustfmt.<version>, merges it into main (and back into
+# develop), then tags main. The tag push triggers deploy.yml.
+#
+# Needs a RELEASE_TOKEN secret (fine-grained PAT with Contents: read and write).
+# Pushes made with the default GITHUB_TOKEN don't trigger other workflows, so
+# the tag would never reach deploy.yml without it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Site version, without the leading v (for example 1.2.0)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN }}
+
+      - name: Resolve names
+        id: names
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::version must look like 1.2.3, got '$VERSION'"
+            exit 1
+          fi
+          # The rustfmt version the preview snapshots were made with.
+          RUSTFMT=$(node -p "require('./src/data/previews.json').stableVersion.match(/\d+\.\d+\.\d+/)[0]")
+          TAG="v${VERSION}+rustfmt.${RUSTFMT}"
+          BRANCH="release/${TAG}"
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null; then
+            echo "::error::tag ${TAG} already exists"
+            exit 1
+          fi
+          if git ls-remote --exit-code --heads origin "${BRANCH}" >/dev/null; then
+            echo "::error::branch ${BRANCH} already exists"
+            exit 1
+          fi
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "branch=${BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "Releasing ${TAG} from develop"
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create release branch
+        env:
+          VERSION: ${{ inputs.version }}
+          TAG: ${{ steps.names.outputs.tag }}
+          BRANCH: ${{ steps.names.outputs.branch }}
+        run: |
+          git switch -c "$BRANCH"
+          npm pkg set version="$VERSION"
+          git commit -am "chore(release): ${TAG}"
+          git push origin "$BRANCH"
+
+      - name: Merge into main and tag
+        env:
+          TAG: ${{ steps.names.outputs.tag }}
+          BRANCH: ${{ steps.names.outputs.branch }}
+        run: |
+          git switch main
+          git merge --no-ff "$BRANCH" -m "chore(release): merge ${BRANCH}"
+          git tag -a "$TAG" -m "$TAG"
+          git push origin main
+          git push origin "$TAG"
+
+      - name: Merge back into develop
+        env:
+          BRANCH: ${{ steps.names.outputs.branch }}
+        run: |
+          git switch develop
+          git merge --ff-only "$BRANCH"
+          git push origin develop
