@@ -48,4 +48,16 @@ Stable options use the stable toolchain (`RUSTFMT_STABLE`, default `1.98.1`). Un
 
 ## Deployment
 
-Every push to `main` deploys to GitHub Pages through `.github/workflows/deploy.yml`. In the repository settings, set Pages to deploy from GitHub Actions. The site is served under `/rustfmt-generator/`, the `base` in `vite.config.mjs`.
+Releases are cut from `develop` with the **Release** workflow (`.github/workflows/release.yml`). Run it from the Actions tab and enter a version such as `1.2.0`. The workflow then:
+
+1. Creates `release/v1.2.0+rustfmt.<version>` from `develop`. `<version>` is the stable rustfmt version the previews were made with, for example `release/v1.2.0+rustfmt.1.9.0`. The version in `package.json` is bumped on this branch.
+2. Merges the branch into `main` and tags the merge as `v1.2.0+rustfmt.1.9.0`.
+3. Merges the branch back into `develop`, so the version bump isn't lost.
+
+The tag push triggers `.github/workflows/deploy.yml`, which tests, builds and publishes the site to GitHub Pages. The site is served under `/rustfmt-generator/`, the `base` in `vite.config.mjs`.
+
+One-time setup:
+
+- **Pages:** in Settings → Pages, set the source to GitHub Actions.
+- **Tag deployments:** in Settings → Environments → `github-pages`, add the tag rule `v*` under deployment branches and tags. Without it, deploys from tags are rejected.
+- **`RELEASE_TOKEN` secret:** create a fine-grained personal access token for this repository with Contents: read and write. Pushes made with the default `GITHUB_TOKEN` don't trigger other workflows, so the tag would not start the deploy. If `main` or `develop` are protected, the token's owner must be allowed to push to them.
