@@ -1,8 +1,9 @@
 name: Deploy
 
 on:
+  # Release tags are pushed by release.yml, e.g. v1.2.0+rustfmt.1.9.0.
   push:
-    branches: [main]
+    tags: ['v*']
   workflow_dispatch:
 
 permissions:
