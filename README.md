@@ -4,61 +4,106 @@
 
 # rustfmt.toml generator
 
-**Build a `rustfmt.toml` option by option, and see what each option does to real Rust code before you commit to it.**
+**Create a Rust formatter configuration online, explore options with code previews, and download your `rustfmt.toml`.**
 
 [![Deploy](https://github.com/baliestri/rustfmt-generator/actions/workflows/deploy.yml/badge.svg)](https://github.com/baliestri/rustfmt-generator/actions/workflows/deploy.yml)
 [![rustfmt](https://img.shields.io/badge/rustfmt-1.9.0-17695f)](https://rust-lang.github.io/rustfmt/)
 [![Node](https://img.shields.io/badge/node-24-17695f?logo=node.js&logoColor=white)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-17695f)](LICENSE.md)
 
-[**Open the generator**](https://baliestri.github.io/rustfmt-generator/) · [Features](#features) · [How previews work](#how-previews-work) · [Development](#development) · [Releasing](#releasing)
+[**Open the generator**](https://baliestri.github.io/rustfmt-generator/) · [Quick start](#quick-start) · [Features](#features) · [How previews work](#how-previews-work) · [Development](#development) · [Releasing](#releasing)
 
 </div>
 
-rustfmt has around 80 options. Most of them are only documented in a long reference page, and the only way to know what one does to your code is to try it. This site puts every option on one page with a typed control, and shows a before/after diff made by the real rustfmt. When the config looks right, copy it or download it.
+Configure Rust formatting without editing TOML by hand. Browse stable and nightly options, compare precomputed before/after code samples, and export a configuration for `cargo fmt`. The generator runs in your browser, with no account or backend.
+
+[![The generator showing rustfmt options and a max_width code preview](public/social-preview.png)](https://baliestri.github.io/rustfmt-generator/)
+
+## Quick start
+
+1. [Open the generator](https://baliestri.github.io/rustfmt-generator/).
+2. Search for an option or browse by category. Enable **Stable only** if you use the stable toolchain.
+3. Change options and inspect their sample diffs. Choosing a preview value only changes the preview; click **Use** to apply it to your configuration.
+4. Open the **rustfmt.toml** tab, choose **Changed options**, and copy or download the file.
+5. Save `rustfmt.toml` beside your project's `Cargo.toml`, then run:
+
+```sh
+cargo fmt
+```
+
+Already have a configuration? Use **Import** in the file tab to paste or upload it.
+
+### Example configuration
+
+This small configuration uses stable options:
+
+```toml
+max_width = 80
+tab_spaces = 4
+use_small_heuristics = "Max"
+```
+
+**Changed options** leaves out values matching the generator's defaults, so `tab_spaces = 4` is omitted unless you choose **All options**. The full export includes defaults but skips unchanged deprecated, version-pinning, and nightly-only keys.
+
+To check formatting without rewriting files, use:
+
+```sh
+cargo fmt --check
+```
+
+> [!TIP]
+> Options or values marked **nightly** require the nightly toolchain. Run `cargo +nightly fmt` to apply them. Exported lines that require nightly include a `# nightly` comment.
+
+For configuration discovery and toolchain details, see the [official rustfmt guide](https://github.com/rust-lang/rustfmt#configuring-rustfmt) and [option reference](https://rust-lang.github.io/rustfmt/).
 
 ## Features
 
-- **Every option, with valid values.** Covers rustfmt 1.9 stable plus nightly-only options. Controls only accept values rustfmt accepts, and options and values that need nightly are marked.
-- **Real previews.** Each option has a Rust sample formatted with the default value and with each alternative. The page shows the diff, with a column ruler and a guide at `max_width`.
-- **Config checks.** Warns about combinations rustfmt objects to, such as a width option larger than `max_width`.
-- **Export and import.** Copy or download only the options you changed, or all of them. Paste or upload an existing `rustfmt.toml`, and unknown keys or invalid values are reported per key.
-- **Remembers your work.** Your options, filters and theme are saved in the browser. There are no accounts and no backend.
-- **Light and dark themes**, or follow the system setting. Works on mobile.
-
-> [!TIP]
-> Options marked **nightly** only take effect on the nightly toolchain. Run them with `cargo +nightly fmt`. The exported file marks those lines with a `# nightly` comment.
+- **Searchable options.** Browse the rustfmt 1.9 configuration catalog plus nightly-only options, with typed controls, categories, and stable/changed filters.
+- **Code previews.** Compare sample output against the default, with syntax highlighting, a column ruler, and a `max_width` guide.
+- **Configuration checks.** Validate types and supported values, report invalid imports per key, and flag known conflicts between options.
+- **Import and export.** Paste or upload an existing file; copy or download changed options or a fuller configuration with defaults.
+- **Local persistence.** Configuration, filters, and theme are saved in your browser's local storage.
+- **Responsive layout.** Use the generator on desktop or mobile, with light, dark, and system themes.
 
 ## How previews work
 
-rustfmt depends on compiler internals, so it can't run in the browser. The previews are snapshots made ahead of time:
+The site does not run rustfmt in your browser. It loads snapshots generated ahead of time with the real formatter:
 
-1. [`scripts/preview-samples.ts`](scripts/preview-samples.ts) has a small Rust sample for each option, written so the option's effect is visible.
-2. `pnpm previews` runs [`scripts/generate-previews.ts`](scripts/generate-previews.ts). It formats each sample with every value of the option (for numbers, a few representative values) and writes the results to `src/data/previews.json`.
-3. The site shows the difference between the output with the default value and the output with the selected value.
+1. [`scripts/preview-samples.ts`](scripts/preview-samples.ts) defines Rust samples chosen to demonstrate individual options.
+2. `pnpm previews` runs [`scripts/generate-previews.ts`](scripts/generate-previews.ts), formats those samples, and writes [`src/data/previews.json`](src/data/previews.json).
+3. The site displays a diff between the sample's default output and the selected snapshot.
 
-Stable options are formatted with the stable toolchain and unstable ones with nightly. The script stops if rustfmt fails or prints a warning, and it warns when a sample shows no change.
+Options requiring nightly, including options with nightly-only values, use the nightly toolchain for their snapshots. Other options use the configured stable toolchain. The generator stops on formatter failures or unexpected warnings, and reports samples with no visible change.
+
+### Preview limitations
+
+- Each preview demonstrates **one option in a fixed sample context**, not the combined effect of your complete configuration or your own source code.
+- Numeric options have representative snapshots. If your value has no exact match, the preview shows the closest available value and labels that substitution.
+- Options that only change how rustfmt runs have no visual preview.
+- Your installed rustfmt version may produce different output. Run `cargo fmt` in your project to check the result with your toolchain.
 
 > [!NOTE]
-> The snapshots are committed, so you don't need Rust installed to work on the site. You only need it to regenerate them.
+> Snapshots are committed to the repository. Rust is only needed to regenerate them, not to run or build the website.
 
 ## Development
 
-**Prerequisites:** [Node.js 24](https://nodejs.org) and [pnpm](https://pnpm.io).
+**Prerequisites:** [Node.js 24](https://nodejs.org) and the [pnpm](https://pnpm.io) version pinned in `package.json`.
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-| Script          | What it does                                   |
-| --------------- | ---------------------------------------------- |
-| `pnpm dev`      | Starts the dev server                          |
-| `pnpm test`     | Runs the unit tests with Vitest                |
-| `pnpm lint`     | Runs ESLint                                    |
-| `pnpm format`   | Formats the code with Prettier                 |
-| `pnpm build`    | Type-checks and builds to `dist/`              |
-| `pnpm previews` | Regenerates the preview snapshots with rustfmt |
+| Script              | What it does                                   |
+| ------------------- | ---------------------------------------------- |
+| `pnpm dev`          | Starts the dev server                          |
+| `pnpm test`         | Runs the unit tests with Vitest                |
+| `pnpm lint`         | Runs ESLint                                    |
+| `pnpm format`       | Formats the code with Prettier                 |
+| `pnpm build`        | Type-checks and builds to `dist/`              |
+| `pnpm preview`      | Serves the production build locally            |
+| `pnpm format:check` | Checks formatting without changing files       |
+| `pnpm previews`     | Regenerates the preview snapshots with rustfmt |
 
 The stack is React 19, TypeScript, Vite, Tailwind CSS v4 and shadcn/ui on Base UI. Code highlighting uses Shiki, and TOML parsing uses smol-toml.
 
